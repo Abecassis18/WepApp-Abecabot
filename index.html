@@ -8,18 +8,18 @@
         /* MODO CLARO PADRÃO: SEM TRANSPARÊNCIA */
         :root {
             --bg-body: #f4f7f6;
-            --bg-container: #ffffff; 
+            --bg-container: #ffffff;
             --text-main: #2c3e50;
             --text-sub: #475569;
-            --border-color: #cbd5e1; 
-            --box-btn-bg: #f8fafc; 
-            --box-btn-border: #e2e8f0; 
-            --btn-extra-bg: #e2e8f0; 
+            --border-color: #cbd5e1;
+            --box-btn-bg: #f8fafc;
+            --box-btn-border: #e2e8f0;
+            --btn-extra-bg: #e2e8f0;
             --btn-extra-text: #2c3e50;
-            --btn-extra-border: #cbd5e1; 
+            --btn-extra-border: #cbd5e1;
         }
 
-        /* MODO OSCURO (MANTÉM TRANSPARÊNCIA) */
+        /* MODO OSCURO */
         [data-theme="dark"] {
             --bg-body: #121214;
             --bg-container: rgba(20, 20, 25, 0.35);
@@ -33,7 +33,7 @@
             --btn-extra-border: rgba(255, 255, 255, 0.15);
         }
 
-        /* MODO ROJO (MANTÉM TRANSPARÊNCIA) */
+        /* MODO ROJO */
         [data-theme="red"] {
             --bg-body: #fdf2f2;
             --bg-container: rgba(254, 226, 226, 0.25);
@@ -47,7 +47,7 @@
             --btn-extra-border: rgba(252, 165, 165, 0.4);
         }
 
-        /* MODO AZUL (MANTÉM TRANSPARÊNCIA) */
+        /* MODO AZUL */
         [data-theme="blue"] {
             --bg-body: #ebf8ff;
             --bg-container: rgba(191, 219, 254, 0.25);
@@ -61,7 +61,7 @@
             --btn-extra-border: rgba(96, 165, 250, 0.4);
         }
 
-        /* MODO VERDE (MANTÉM TRANSPARÊNCIA) */
+        /* MODO VERDE */
         [data-theme="green"] {
             --bg-body: #f0fff4;
             --bg-container: rgba(167, 243, 208, 0.25);
@@ -73,6 +73,20 @@
             --btn-extra-bg: rgba(110, 231, 183, 0.4);
             --btn-extra-text: #047857;
             --btn-extra-border: rgba(52, 211, 153, 0.4);
+        }
+
+        /* MODO MORADO (ROXO ESCURO) */
+        [data-theme="purple"] {
+            --bg-body: #160d26;
+            --bg-container: rgba(34, 18, 62, 0.45);
+            --text-main: #f3e8ff;
+            --text-sub: #d8b4fe;
+            --border-color: rgba(168, 85, 247, 0.28);
+            --box-btn-bg: rgba(15, 7, 28, 0.35);
+            --box-btn-border: rgba(168, 85, 247, 0.22);
+            --btn-extra-bg: rgba(126, 34, 206, 0.36);
+            --btn-extra-text: #f3e8ff;
+            --btn-extra-border: rgba(192, 132, 252, 0.35);
         }
 
         * {
@@ -96,7 +110,7 @@
             transition: background 0.3s ease;
         }
 
-        /* BARRA DE PERSONALIZAÇÃO */
+        /* BARRA DE PERSONALIZACIÓN */
         .custom-bar {
             background-color: var(--bg-container);
             backdrop-filter: blur(15px);
@@ -117,6 +131,7 @@
 
         .theme-controls, .bg-controls {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
@@ -135,7 +150,7 @@
             font-weight: 500;
         }
 
-        html:not([data-theme]) .custom-bar select, 
+        html:not([data-theme]) .custom-bar select,
         html:not([data-theme]) .custom-bar input {
             background: #ffffff;
         }
@@ -148,9 +163,27 @@
             background: #2a2a32;
             color: #ffffff;
         }
+        [data-theme="purple"] .custom-bar select option {
+            background: #231240;
+            color: #f3e8ff;
+        }
 
         .custom-bar input {
-            width: 250px;
+            width: 220px;
+        }
+
+        .btn-clear-bg {
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--btn-extra-border);
+            background: var(--btn-extra-bg);
+            color: var(--btn-extra-text);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-clear-bg:hover {
+            opacity: 0.85;
         }
 
         /* PAINEL PRINCIPAL */
@@ -163,7 +196,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
             width: 100%;
-            max-width: 1100px; 
+            max-width: 1100px;
         }
 
         html:not([data-theme]) .container,
@@ -204,18 +237,17 @@
             transition: background 0.2s;
         }
 
-        /* Estilo quando está pausado (indicando que é clicável) */
         .timer.paused .time-unit {
             cursor: pointer;
         }
         .timer.paused .time-unit:hover {
             background: rgba(0, 0, 0, 0.08);
         }
-        [data-theme="dark"] .timer.paused .time-unit:hover {
+        [data-theme="dark"] .timer.paused .time-unit:hover,
+        [data-theme="purple"] .timer.paused .time-unit:hover {
             background: rgba(255, 255, 255, 0.15);
         }
 
-        /* Quando está editando ativamente */
         .time-unit[contenteditable="true"] {
             background: rgba(52, 152, 219, 0.2) !important;
             outline: none;
@@ -295,7 +327,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Adicionada cor amarela dourada/laranja para indicar horas extras completas */
         .progress-bar.overtime {
             background-color: #f39c12;
         }
@@ -347,7 +378,7 @@
             background-color: rgba(52, 73, 94, 0.8);
             color: #ffffff;
         }
-        
+
         .btn-extra:active {
             transform: scale(0.97);
         }
@@ -380,14 +411,31 @@
         }
 
         .btn-adj:hover { background: rgba(0,0,0,0.05); }
-        [data-theme="dark"] .btn-adj:hover { background: rgba(255,255,255,0.15); }
+        [data-theme="dark"] .btn-adj:hover,
+        [data-theme="purple"] .btn-adj:hover { background: rgba(255,255,255,0.15); }
 
-        .click-counter {
+        .click-counter-input {
             font-size: 0.85rem;
             font-weight: bold;
             color: var(--text-main);
-            min-width: 20px;
+            width: 32px;
+            height: 22px;
             text-align: center;
+            border: none;
+            background: transparent;
+        }
+        .click-counter-input:focus {
+            outline: none;
+            background: rgba(52, 152, 219, 0.15);
+            border-radius: 4px;
+        }
+        .click-counter-input::-webkit-outer-spin-button,
+        .click-counter-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .click-counter-input[type=number] {
+            -moz-appearance: textfield;
         }
 
         .total-box {
@@ -457,11 +505,19 @@
                 <option value="red">Modo Rojo</option>
                 <option value="blue">Modo Azul</option>
                 <option value="green">Modo Verde</option>
+                <option value="purple">Modo Morado</option>
             </select>
         </div>
         <div class="bg-controls">
-            <label for="bgInput">🖼️ Imagen/GIF de Fondo (URL):</label>
-            <input type="text" id="bgInput" placeholder="Pega el enlace del GIF o imagen aquí...">
+            <label for="bgPresetSelect">🖼️ Fondos:</label>
+            <select id="bgPresetSelect">
+                <option value="">Personalizado / Sin preset</option>
+                <option value="grad-sunset">Degradado Atardecer</option>
+                <option value="grad-night">Degradado Noche Violeta</option>
+                <option value="grad-mint">Degradado Menta Suave</option>
+            </select>
+            <input type="text" id="bgInput" placeholder="O pega URL de imagen/GIF...">
+            <button type="button" class="btn-clear-bg" id="clearBgBtn" title="Quitar fondo">✕ Limpiar</button>
         </div>
     </div>
 
@@ -487,7 +543,7 @@
 
             <div class="meta-box">
                 <label for="hoursInput">Meta:</label>
-                <input type="number" id="hoursInput" class="input-meta" value="7" min="1" max="24">
+                <input type="number" id="hoursInput" class="input-meta" value="7" min="1" max="24" step="0.5">
                 <span>hrs</span>
             </div>
         </div>
@@ -497,16 +553,16 @@
                 <button class="btn-extra" onclick="changeCount('videoT1', 1)">Video T1</button>
                 <div class="counter-adjuster">
                     <button class="btn-adj" onclick="changeCount('videoT1', -1)">-</button>
-                    <span class="click-counter" id="count-videoT1">0</span>
+                    <input type="number" class="click-counter-input" id="count-videoT1" value="0" min="0" oninput="updateCountFromInput('videoT1', this.value)">
                     <button class="btn-adj" onclick="changeCount('videoT1', 1)">+</button>
                 </div>
             </div>
-            
+
             <div class="btn-wrapper">
                 <button class="btn-extra" onclick="changeCount('commentsLive', 1)">Comments/Live</button>
                 <div class="counter-adjuster">
                     <button class="btn-adj" onclick="changeCount('commentsLive', -1)">-</button>
-                    <span class="click-counter" id="count-commentsLive">0</span>
+                    <input type="number" class="click-counter-input" id="count-commentsLive" value="0" min="0" oninput="updateCountFromInput('commentsLive', this.value)">
                     <button class="btn-adj" onclick="changeCount('commentsLive', 1)">+</button>
                 </div>
             </div>
@@ -515,7 +571,7 @@
                 <button class="btn-extra" onclick="changeCount('fanPosts', 1)">Fan posts</button>
                 <div class="counter-adjuster">
                     <button class="btn-adj" onclick="changeCount('fanPosts', -1)">-</button>
-                    <span class="click-counter" id="count-fanPosts">0</span>
+                    <input type="number" class="click-counter-input" id="count-fanPosts" value="0" min="0" oninput="updateCountFromInput('fanPosts', this.value)">
                     <button class="btn-adj" onclick="changeCount('fanPosts', 1)">+</button>
                 </div>
             </div>
@@ -524,7 +580,7 @@
                 <button class="btn-extra" onclick="changeCount('videoT2', 1)">Video T2</button>
                 <div class="counter-adjuster">
                     <button class="btn-adj" onclick="changeCount('videoT2', -1)">-</button>
-                    <span class="click-counter" id="count-videoT2">0</span>
+                    <input type="number" class="click-counter-input" id="count-videoT2" value="0" min="0" oninput="updateCountFromInput('videoT2', this.value)">
                     <button class="btn-adj" onclick="changeCount('videoT2', 1)">+</button>
                 </div>
             </div>
@@ -533,7 +589,7 @@
                 <button class="btn-extra" onclick="changeCount('postT2', 1)">Post T2</button>
                 <div class="counter-adjuster">
                     <button class="btn-adj" onclick="changeCount('postT2', -1)">-</button>
-                    <span class="click-counter" id="count-postT2">0</span>
+                    <input type="number" class="click-counter-input" id="count-postT2" value="0" min="0" oninput="updateCountFromInput('postT2', this.value)">
                     <button class="btn-adj" onclick="changeCount('postT2', 1)">+</button>
                 </div>
             </div>
@@ -542,7 +598,7 @@
                 <button class="btn-extra" onclick="changeCount('channelT2', 1)">Channel T2</button>
                 <div class="counter-adjuster">
                     <button class="btn-adj" onclick="changeCount('channelT2', -1)">-</button>
-                    <span class="click-counter" id="count-channelT2">0</span>
+                    <input type="number" class="click-counter-input" id="count-channelT2" value="0" min="0" oninput="updateCountFromInput('channelT2', this.value)">
                     <button class="btn-adj" onclick="changeCount('channelT2', 1)">+</button>
                 </div>
             </div>
@@ -558,8 +614,8 @@
 
     <script>
         let timerInterval = null;
-        let elapsedSecondsBeforePause = 0; 
-        let startTime = null; 
+        let elapsedSecondsBeforePause = 0;
+        let startTime = null;
         let isRunning = false;
 
         let clickCounts = {
@@ -570,11 +626,29 @@
             videoT1: 0.83, commentsLive: 0.20, fanPosts: 0.40, videoT2: 1.18, postT2: 0.59, channelT2: 1.67
         };
 
+        const bgPresets = {
+            'grad-sunset': {
+                backgroundImage: 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 55%, #fbc2eb 100%)',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            },
+            'grad-night': {
+                backgroundImage: 'linear-gradient(135deg, #1e1b4b 0%, #3b0764 50%, #0f172a 100%)',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            },
+            'grad-mint': {
+                backgroundImage: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }
+        };
+
         const timerContainer = document.getElementById('timerContainer');
         const hoursDisplay = document.getElementById('hoursDisplay');
         const minsDisplay = document.getElementById('minsDisplay');
         const secsDisplay = document.getElementById('secsDisplay');
-        
+
         const progressBar = document.getElementById('progressBar');
         const percentageDisplay = document.getElementById('percentage');
         const performanceStatus = document.getElementById('performanceStatus');
@@ -582,14 +656,33 @@
         const totalItemsDisplay = document.getElementById('totalItemsDisplay');
         const totalBox = document.getElementById('totalBox');
         const totalLabel = document.getElementById('totalLabel');
-        
+
         const startBtn = document.getElementById('startBtn');
         const pauseBtn = document.getElementById('pauseBtn');
         const resetBtn = document.getElementById('resetBtn');
         const hoursInput = document.getElementById('hoursInput');
-        
+
         const themeSelect = document.getElementById('themeSelect');
+        const bgPresetSelect = document.getElementById('bgPresetSelect');
         const bgInput = document.getElementById('bgInput');
+        const clearBgBtn = document.getElementById('clearBgBtn');
+
+        function applyBackground({ preset = '', url = '' }) {
+            if (url) {
+                document.body.style.backgroundImage = `url('${url}')`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundRepeat = 'no-repeat';
+            } else if (preset && bgPresets[preset]) {
+                const p = bgPresets[preset];
+                document.body.style.backgroundImage = p.backgroundImage;
+                document.body.style.backgroundSize = p.backgroundSize;
+                document.body.style.backgroundRepeat = p.backgroundRepeat;
+            } else {
+                document.body.style.backgroundImage = 'none';
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundRepeat = 'no-repeat';
+            }
+        }
 
         function loadFromLocalStorage() {
             const savedCounts = localStorage.getItem('track_clickCounts');
@@ -597,7 +690,7 @@
                 clickCounts = JSON.parse(savedCounts);
                 for (let key in clickCounts) {
                     const el = document.getElementById(`count-${key}`);
-                    if (el) el.innerText = clickCounts[key];
+                    if (el) el.value = clickCounts[key];
                 }
             }
             if (localStorage.getItem('track_metaHours')) hoursInput.value = localStorage.getItem('track_metaHours');
@@ -608,9 +701,11 @@
             themeSelect.value = savedTheme;
             setTheme(savedTheme);
 
+            const savedPreset = localStorage.getItem('track_bgPreset') || '';
             const savedBg = localStorage.getItem('track_bgUrl') || '';
+            bgPresetSelect.value = savedPreset;
             bgInput.value = savedBg;
-            if (savedBg) document.body.style.backgroundImage = `url('${savedBg}')`;
+            applyBackground({ preset: savedPreset, url: savedBg });
 
             if (isRunning) {
                 startTime = parseInt(localStorage.getItem('track_startTime'));
@@ -632,6 +727,7 @@
             localStorage.setItem('track_isRunning', isRunning);
             localStorage.setItem('track_startTime', startTime || '');
             localStorage.setItem('track_theme', themeSelect.value);
+            localStorage.setItem('track_bgPreset', bgPresetSelect.value);
             localStorage.setItem('track_bgUrl', bgInput.value);
         }
 
@@ -639,7 +735,19 @@
             if (clickCounts.hasOwnProperty(buttonId)) {
                 clickCounts[buttonId] += amount;
                 if (clickCounts[buttonId] < 0) clickCounts[buttonId] = 0;
-                document.getElementById(`count-${buttonId}`).innerText = clickCounts[buttonId];
+                document.getElementById(`count-${buttonId}`).value = clickCounts[buttonId];
+                saveToLocalStorage();
+                updateDisplay();
+            }
+        }
+
+        function updateCountFromInput(buttonId, value) {
+            if (clickCounts.hasOwnProperty(buttonId)) {
+                let parsedValue = parseInt(value);
+                if (isNaN(parsedValue) || parsedValue < 0) {
+                    parsedValue = 0;
+                }
+                clickCounts[buttonId] = parsedValue;
                 saveToLocalStorage();
                 updateDisplay();
             }
@@ -686,12 +794,8 @@
             if (document.activeElement !== secsDisplay) secsDisplay.innerText = String(secs).padStart(2, '0');
 
             const targetSeconds = getTargetSeconds();
-            
-            // AJUSTE: O cálculo de porcentagem de tempo agora não trava mais em 100%!
             let timePercentage = (currentTotalSeconds / targetSeconds) * 100;
-            
-            // A barra de progresso visual continua em 100% (para não quebrar o design), 
-            // mas muda de cor quando entra em horas extras (overtime).
+
             if (timePercentage >= 100) {
                 progressBar.style.width = "100%";
                 progressBar.classList.add('overtime');
@@ -699,8 +803,7 @@
                 progressBar.style.width = `${timePercentage}%`;
                 progressBar.classList.remove('overtime');
             }
-            
-            // O texto mostra o valor real (Ex: "Tiempo: 105.42%")
+
             percentageDisplay.innerText = `Tiempo: ${timePercentage.toFixed(2)}%`;
 
             const totalProduction = calculateTotalProductionPercentage();
@@ -715,7 +818,7 @@
                 performanceStatus.innerText = "▲ POR ENCIMA";
                 performanceStatus.style.backgroundColor = "rgba(46, 204, 113, 0.25)";
                 performanceStatus.style.color = "#2ecc71";
-                
+
                 totalBox.style.borderColor = "#2ecc71";
                 totalBox.style.backgroundColor = isDarkOrColorTheme ? "rgba(46, 204, 113, 0.08)" : "#f0fff4";
                 totalLabel.style.color = "#27ae60";
@@ -723,7 +826,7 @@
                 performanceStatus.innerText = "▼ POR DEBAJO";
                 performanceStatus.style.backgroundColor = "rgba(231, 76, 60, 0.25)";
                 performanceStatus.style.color = "#e74c3c";
-                
+
                 totalBox.style.borderColor = "#e74c3c";
                 totalBox.style.backgroundColor = isDarkOrColorTheme ? "rgba(231, 76, 60, 0.08)" : "#fdf2f2";
                 totalLabel.style.color = "#e74c3c";
@@ -763,7 +866,7 @@
             if (this === secsDisplay) { s = val > 59 ? 59 : val; }
 
             elapsedSecondsBeforePause = (h * 3600) + (m * 60) + s;
-            
+
             saveToLocalStorage();
             updateDisplay();
         }
@@ -782,13 +885,28 @@
             saveToLocalStorage();
         });
 
+        bgPresetSelect.addEventListener('change', (e) => {
+            const preset = e.target.value;
+            if (preset) {
+                bgInput.value = '';
+            }
+            applyBackground({ preset, url: bgInput.value.trim() });
+            saveToLocalStorage();
+        });
+
         bgInput.addEventListener('input', (e) => {
             const url = e.target.value.trim();
             if (url) {
-                document.body.style.backgroundImage = `url('${url}')`;
-            } else {
-                document.body.style.backgroundImage = 'none';
+                bgPresetSelect.value = '';
             }
+            applyBackground({ preset: bgPresetSelect.value, url });
+            saveToLocalStorage();
+        });
+
+        clearBgBtn.addEventListener('click', () => {
+            bgPresetSelect.value = '';
+            bgInput.value = '';
+            applyBackground({ preset: '', url: '' });
             saveToLocalStorage();
         });
 
@@ -813,23 +931,23 @@
 
         resetBtn.addEventListener('click', () => {
             if (!confirm("¿Está seguro de que desea reiniciar el cronómetro y todos los contadores? (Su tema e imagen de fondo se mantendrán)")) return;
-            
-            isRunning = false; 
+
+            isRunning = false;
             if (timerInterval) {
-                clearInterval(timerInterval); 
+                clearInterval(timerInterval);
                 timerInterval = null;
             }
-            
-            elapsedSecondsBeforePause = 0; 
-            startTime = null; 
+
+            elapsedSecondsBeforePause = 0;
+            startTime = null;
             hoursInput.disabled = false;
             timerContainer.classList.add('paused');
-            
+
             for (let key in clickCounts) {
                 clickCounts[key] = 0;
-                document.getElementById(`count-${key}`).innerText = 0;
+                document.getElementById(`count-${key}`).value = 0;
             }
-            
+
             saveToLocalStorage();
             updateDisplay();
             startBtn.disabled = false;
